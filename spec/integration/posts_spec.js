@@ -10,39 +10,58 @@ describe("routes : posts", () => {
     beforeEach((done) => {
         this.post;
         sequelize.sync({force: true}).then((res) => {
-  
-         Post.create({
-           title: "JS Frameworks",
-           description: "There is a lot of them"
-         })
-          .then((post) => {
-            this.post = post;
-            done();
-          })
-          .catch((err) => {
-            console.log(err);
-            done();
-          });
-  
+
+            Post.create({
+                title: "save the whales",
+                description: "There is a lot of them"
+            })
+            .then((post) => {
+                this.post = post;
+                done();
+            })
+            .catch((err) => {
+                console.log(err);
+                done();
+            });
+
         });
-  
-      });
 
-
-
-
-
-
-  describe("GET /posts", () => {
-
-    it("should return a status code 200", (done) => {
-      request.get(base, (err, res, body) => {
-        expect(res.statusCode).toBe(200);
-        expect(err).toBeNull();
-        expect(body).toContain("Posts");
-        done();
-      });
     });
 
-  });
+
+
+    describe("GET /posts", () => {
+
+        it("should return a status code 200", (done) => {
+            request.get(base, (err, res, body) => {
+                expect(res.statusCode).toBe(200);
+                expect(err).toBeNull();
+                expect(body).toContain("Posts");
+                done();
+            });
+        });
+
+    });
+
+
+
+    describe("GET /posts/new", () => {
+
+        it("should render a new post form", (done) => {
+            request.get(`${base}new`, (err, res, body) => {
+                expect(err).toBeNull();
+                expect(body).toContain("New Post");
+                done();
+            });
+        });
+    
+    });
+
+
+
+
+
+
+
+
 });

@@ -8,10 +8,11 @@ describe("routes : static", () => {
 
     describe("GET /", () => {
 
-        it("should return status code 200", (done) => {
+        it("should return status code 200 and have 'Express Template' in the body of the response", (done) => {
 
             request.get(base, (err, res, body) => {
                 expect(res.statusCode).toBe(200);
+                expect(body).toContain("Express Template");
                 done();
             });
 
@@ -20,17 +21,7 @@ describe("routes : static", () => {
     });
 
 
-    describe("GET /marco", () => {
-        
-        it("should return status code 200", (done) => {
-
-            request.get(marcoBase, (err, res, body) => {
-                expect(res.statusCode).toBe(200);
-                expect(res.body).toBe("polo")
-                done();
-            });
-        });
-    });
+    
 
 
 

@@ -128,3 +128,4 @@ $ touch src/config/route-config.js
 
 
 
+#  npm i --save dotenv@5.0.0 to store environment variables
